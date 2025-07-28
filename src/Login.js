@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import ApiData from './config.json';
 
-function Login() {
+function Login({ onLoginSuccess }) {
   const [form, setForm] = useState({ userName: '', password: '' });
 
   const handleChange = e =>
@@ -18,7 +18,17 @@ function Login() {
       });
 
       console.log('Gelen veri:', res.data);
-      alert('Hoşgeldin ' + (res.data.UserName || res.data.userName));
+
+      // Burada sunucudan gelen kullanıcı tipi bilgisi olmalı
+      // Örnek: res.data.role = 'student' | 'teacher' | 'class'
+      const userData = {
+        userName: res.data.UserName || res.data.userName,
+        role: res.data.role || 'student' // default student, sunucuya göre uyarlayın
+      };
+
+      alert('Hoşgeldin ' + userData.userName);
+      onLoginSuccess(userData);  // Ana komponenti bilgilendir
+
     } catch (err) {
       console.error(err);
       alert('Giriş başarısız');
