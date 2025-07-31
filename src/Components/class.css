@@ -1,22 +1,42 @@
-/* Global height ayarı */
 html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-/* Tam ekran arka plan */
 .page-background {
-  background-image: url('./arkaplan.jpg');
+  height: 100vh;
+  background-image: url('./arkaplan.jpg'); /* Arka plan resmini public içine koy */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
-  height: 100vh;            /* Tam ekran yüksekliği */
   color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, sans-serif;
   padding: 20px;
   box-sizing: border-box;
+  overflow-y: auto;
+}
 
-  overflow-y: auto;        /* İçerik fazla ise dikey scroll */
+.button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.button-green {
+  background-color: #28a745;
+}
+
+.list-item {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

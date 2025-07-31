@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import ApiData from './config.json';
+import './auth.css';  // CSS dosyasını ekledik
 
 function Login({ onLoginSuccess }) {
   const [form, setForm] = useState({ userName: '', password: '' });
@@ -17,26 +18,21 @@ function Login({ onLoginSuccess }) {
         PasswordHash: form.password
       });
 
-      console.log('Gelen veri:', res.data);
-
-      // Burada sunucudan gelen kullanıcı tipi bilgisi olmalı
-      // Örnek: res.data.role = 'student' | 'teacher' | 'class'
       const userData = {
         userName: res.data.UserName || res.data.userName,
-        role: res.data.role || 'student' // default student, sunucuya göre uyarlayın
+        role: res.data.role || 'student'
       };
 
       alert('Hoşgeldin ' + userData.userName);
-      onLoginSuccess(userData);  // Ana komponenti bilgilendir
+      onLoginSuccess(userData);
 
     } catch (err) {
-      console.error(err);
       alert('Giriş başarısız');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="auth-form">
       <h2>Login</h2>
       <input
         name="userName"

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import ApiData from './config.json';
+import './auth.css';
 
 function Register() {
   const [form, setForm] = useState({ userName: '', email: '', password: '' });
@@ -12,22 +13,19 @@ function Register() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      console.log('Gönderilen veri:', form);
       const res = await axios.post(ApiData.API_URL + 'Auth/register', {
         UserName: form.userName,
         Email: form.email,
         PasswordHash: form.password
       });
-      console.log('Sunucudan gelen yanıt:', res.data);
       alert('Kayıt başarılı, kullanıcı ID: ' + res.data.UserId);
     } catch (err) {
-      console.error('Kayıt hatası detay:', err.response?.data || err.message);
-      alert('Kayıt başarısız: ' + (err.response?.data?.Title || err.message));
+      alert('Kayıt başarısız');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="auth-form">
       <h2>Kayıt Ol</h2>
       <input
         name="userName"
