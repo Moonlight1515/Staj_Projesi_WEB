@@ -3,7 +3,8 @@ import axios from 'axios';
 import PopupStudent from './PopupStudent';
 import ApiData from '../config.json';
 import Button from 'react-bootstrap/Button';
-
+import './Student.css'; // ✅ Bu doğru
+ // Arka plan ve stil için CSS
 
 function Student() {
   const [students, setStudents] = useState([]);
@@ -52,7 +53,7 @@ function Student() {
   };
 
   return (
-    <div>
+    <div className="page-background">
       <input
         type="text"
         placeholder="TC ile ara"
@@ -61,19 +62,17 @@ function Student() {
         style={{ marginRight: 8 }}
       />
       <Button variant="primary" onClick={searchByTC} style={{ marginRight: 8 }}>
-  Ara
-</Button>
-<Button variant="secondary" onClick={() => { setSearchTC(''); fetchStudents(); }} style={{ marginRight: 8 }}>
-  Temizle
-</Button>
-
-      
+        Ara
+      </Button>
+      <Button variant="secondary" onClick={() => { setSearchTC(''); fetchStudents(); }} style={{ marginRight: 8 }}>
+        Temizle
+      </Button>
 
       <button onClick={() => setPopupType('add')} style={{ marginLeft: 16 }}>
         Öğrenci Ekle
       </button>
 
-      <table border="1" cellPadding="5" style={{ marginTop: 10, borderCollapse: 'collapse' }}>
+      <table border="1" cellPadding="5" style={{ marginTop: 10, borderCollapse: 'collapse', color: 'white' }}>
         <thead>
           <tr>
             <th>Ad</th>

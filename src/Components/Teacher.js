@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PopupTeacher from './PopupTeacher';
 import ApiData from '../config.json';
+import './teacher.css';
 
 function Teacher() {
   const [teachers, setTeachers] = useState([]);
@@ -49,15 +50,17 @@ function Teacher() {
   };
 
   return (
-    <div>
+    <div className="page-background" style={{ padding: 20, maxWidth: 900, margin: 'auto', color: 'white' }}>
+      <h2>Öğretmenler</h2>
+
       <input
         type="text"
         placeholder="TC ile ara"
         value={searchTC}
         onChange={(e) => setSearchTC(e.target.value)}
-        style={{ marginRight: 8 }}
+        style={{ marginRight: 8, padding: '6px 8px', borderRadius: 4, border: '1px solid #ccc' }}
       />
-      <button onClick={searchByTC} style={{ marginRight: 8 }}>
+      <button onClick={searchByTC} style={buttonStyle}>
         Ara
       </button>
       <button
@@ -65,16 +68,26 @@ function Teacher() {
           setSearchTC('');
           fetchTeachers();
         }}
-        style={{ marginRight: 8 }}
+        style={buttonStyle}
       >
         Temizle
       </button>
 
-      <button onClick={() => setPopupType('add')} style={{ marginLeft: 16 }}>
+      <button onClick={() => setPopupType('add')} style={{ ...buttonStyle, marginLeft: 16, backgroundColor: '#28a745' }}>
         Öğretmen Ekle
       </button>
 
-      <table border="1" cellPadding="5" style={{ marginTop: 10, borderCollapse: 'collapse' }}>
+      <table
+        border="1"
+        cellPadding="5"
+        style={{
+          marginTop: 10,
+          borderCollapse: 'collapse',
+          width: '100%',
+          color: 'white',
+          backgroundColor: 'rgba(0,0,0,0.4)',
+        }}
+      >
         <thead>
           <tr>
             <th>Ad</th>
@@ -108,6 +121,7 @@ function Teacher() {
                       setSelectedTeacherId(t.id);
                       setPopupType('edit');
                     }}
+                    style={buttonStyle}
                   >
                     Düzenle
                   </button>
@@ -116,6 +130,7 @@ function Teacher() {
                       setSelectedTeacherId(t.id);
                       setPopupType('delete');
                     }}
+                    style={{ ...buttonStyle, backgroundColor: '#dc3545' }}
                   >
                     Sil
                   </button>
@@ -126,15 +141,19 @@ function Teacher() {
         </tbody>
       </table>
 
-      {popupType && (
-        <PopupTeacher
-          type={popupType}
-          teacherId={selectedTeacherId}
-          closePopup={handleClosePopup}
-        />
-      )}
+      {popupType && <PopupTeacher type={popupType} teacherId={selectedTeacherId} closePopup={handleClosePopup} />}
     </div>
   );
 }
+
+const buttonStyle = {
+  padding: '6px 12px',
+  marginRight: 8,
+  borderRadius: 4,
+  border: 'none',
+  backgroundColor: '#007bff',
+  color: 'white',
+  cursor: 'pointer',
+};
 
 export default Teacher;

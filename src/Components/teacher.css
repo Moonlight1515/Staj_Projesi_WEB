@@ -1,0 +1,12 @@
+.page-background {
+  background-image: url('./arkaplan.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* min-height yerine full ekran yüksekliği */
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  box-sizing: border-box; /* padding'in toplam yüksekliğe dahil olması için */
+  overflow-y: auto; /* içerik sığmazsa dikey scroll olsun */
+}

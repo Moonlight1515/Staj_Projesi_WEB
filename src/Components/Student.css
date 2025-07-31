@@ -1,0 +1,33 @@
+.page-background {
+  background-image: url('./arkaplan.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+
+  /* Tam ekran yüksekliği ve genişliği */
+  height: 100vh;
+  width: 100vw;
+
+  /* İçeriğe göre büyümesini sağlamak için min-height da ekleyebilirsin */
+  min-height: 100vh;
+
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+}
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+nav {
+  margin: 0;
+  padding: 10px; /* veya 0 */
+}
+
+.App {
+  margin: 0;
+  padding: 0;
+}

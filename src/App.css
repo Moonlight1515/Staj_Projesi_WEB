@@ -19,7 +19,7 @@ html, body, #root {
 
   background-image: url('./menu.png');
   background-size: cover;
-  background-position: center;
+  background-position: center 10%; /* veya center 50px */
   background-repeat: no-repeat;
   
   height: 100vh;
@@ -29,6 +29,7 @@ html, body, #root {
   padding: 0;
   overflow: hidden;
 }
+
 
 /* Menü */
 nav {
@@ -59,3 +60,4 @@ nav button {
   padding: 10px 20px;
   font-size: 18px;
 }
+

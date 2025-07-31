@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Popup.css';
 import ApiData from '../config.json';
-
 
 function PopupTeacher({ type, teacherId, closePopup }) {
   const [name, setName] = useState('');
@@ -12,21 +11,18 @@ function PopupTeacher({ type, teacherId, closePopup }) {
   const [tc, setTc] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [gender, setGender] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState(null);
 
   useEffect(() => {
     if ((type === 'edit' || type === 'delete') && teacherId) {
-      axios
-        .get(`${ApiData.API_URL}Ogretmen/${teacherId}`)
+      axios.get(`${ApiData.API_URL}Ogretmen/${teacherId}`)
         .then((res) => {
-          const t = res.data;
+          const t = res.data.data;
           setName(t?.name || '');
           setSurname(t?.surname || '');
           setTc(t?.tc || '');
           setPhone(t?.phone || '');
           setEmail(t?.email || '');
-          setGender(t?.gender || '');
           setDateOfBirth(t?.dateOfBirth ? new Date(t.dateOfBirth) : null);
         })
         .catch(() => {
@@ -39,14 +35,13 @@ function PopupTeacher({ type, teacherId, closePopup }) {
       setTc('');
       setPhone('');
       setEmail('');
-      setGender('');
       setDateOfBirth(null);
     }
   }, [type, teacherId, closePopup]);
 
   const handleConfirm = () => {
     if ((type === 'add' || type === 'edit') &&
-        (!name.trim() || !surname.trim() || !tc.trim() || !phone.trim() || !email.trim() || !dateOfBirth)) {
+        (!name || !surname || !tc || !phone || !email || !dateOfBirth)) {
       alert('Tüm alanları doldurun');
       return;
     }
@@ -57,17 +52,16 @@ function PopupTeacher({ type, teacherId, closePopup }) {
       tc,
       phone,
       email,
-      gender,
       dateOfBirth: dateOfBirth.toISOString()
     };
 
     let request;
     if (type === 'add') {
-      request = axios.post(ApiData.API_URL + 'Ogretmen', payload);
+      request = axios.post(`${ApiData.API_URL}Ogretmen`, payload);
     } else if (type === 'edit') {
-      request = axios.put(ApiData.API_URL + `Ogretmen/${teacherId}`, payload);
+      request = axios.put(`${ApiData.API_URL}Ogretmen/${teacherId}`, payload);
     } else if (type === 'delete') {
-      request = axios.delete(ApiData.API_URL + `Ogretmen/${teacherId}`);
+      request = axios.delete(`${ApiData.API_URL}Ogretmen/${teacherId}`);
     } else {
       alert('Geçersiz işlem');
       return;
@@ -79,7 +73,8 @@ function PopupTeacher({ type, teacherId, closePopup }) {
         alert(`Öğretmen başarıyla ${action}.`);
         closePopup();
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error('İşlem hatası:', err);
         alert('İşlem sırasında hata oluştu');
       });
   };
@@ -92,48 +87,46 @@ function PopupTeacher({ type, teacherId, closePopup }) {
         {(type === 'add' || type === 'edit') && (
           <>
             <div className="form-group">
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
               <label>Ad</label>
+              <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
             </div>
+
             <div className="form-group">
-              <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} required />
               <label>Soyad</label>
+              <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} />
             </div>
+
             <div className="form-group">
-              <input type="text" value={tc} onChange={(e) => setTc(e.target.value)} required />
               <label>TC Kimlik No</label>
+              <input type="text" value={tc} onChange={(e) => setTc(e.target.value)} />
             </div>
+
             <div className="form-group">
-              <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} required />
               <label>Telefon</label>
+              <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
             </div>
+
             <div className="form-group">
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
               <label>Email</label>
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
+
             <div className="form-group">
-              <select value={gender} onChange={(e) => setGender(e.target.value)} required>
-                <option value="">Cinsiyet Seçiniz</option>
-                <option value="Kadın">Kadın</option>
-                <option value="Erkek">Erkek</option>
-                <option value="Belirtmek istemiyorum">Belirtmek istemiyorum</option>
-              </select>
-              <label>Cinsiyet</label>
-            </div>
-            <div className="form-group">
+              <label>Doğum Tarihi</label>
               <DatePicker
                 selected={dateOfBirth}
                 onChange={(date) => setDateOfBirth(date)}
                 dateFormat="yyyy-MM-dd"
-                placeholderText="Doğum Tarihi"
+                placeholderText="Doğum Tarihi seçiniz"
                 className="datepicker-input"
               />
-              <label>Doğum Tarihi</label>
             </div>
           </>
         )}
 
-        {type === 'delete' && <p>Bu öğretmeni silmek istediğinizden emin misiniz?</p>}
+        {type === 'delete' && (
+          <p>Bu öğretmeni silmek istediğinizden emin misiniz?</p>
+        )}
 
         <div className="button-group">
           <button onClick={handleConfirm}>Onayla</button>
