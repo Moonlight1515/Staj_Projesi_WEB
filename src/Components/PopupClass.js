@@ -1,55 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ApiData from '../config.json';
 
-function PopupClass({ type, classId, onClose, onSuccess }) {
+function PopupClass({ type, classId, closePopup, onSuccess }) {
   const [name, setName] = useState('');
-  const [teacherId, setTeacherId] = useState('');
-  const [teachers, setTeachers] = useState([]);
 
   useEffect(() => {
-    axios.get('https://localhost:7004/api/Ogretmen')
-      .then(res => {
-        if (res.data) setTeachers(res.data.data || []);
-      })
-      .catch(() => alert('Öğretmenler yüklenemedi'));
-
-    if (type === 'edit' && classId) {
-      axios.get(`https://localhost:7004/api/Sinif/${classId}`)
+    if ((type === 'edit') && classId) {
+      axios.get(`${ApiData.API_URL}Sinif/${classId}`)
         .then(res => {
           if (res.data) {
-            setName(res.data.data.name || '');
-            setTeacherId(res.data.data.ogretmenId || '');
+            setName(res.data.name || '');  // res.data doğrudan sınıf objesi
           }
         })
         .catch(() => alert('Sınıf bilgileri yüklenemedi'));
-    } else {
+    } else if (type === 'add') {
       setName('');
-      setTeacherId('');
     }
   }, [type, classId]);
 
   const handleSave = () => {
-    if (!name.trim() || !teacherId) {
-      alert('Lütfen tüm alanları doldurun');
+    if (!name.trim()) {
+      alert('Lütfen sınıf adını giriniz');
       return;
     }
 
-    const payload = { name, ogretmenId: Number(teacherId) };
+    const payload = { name };
 
     if (type === 'add') {
-      axios.post('https://localhost:7004/api/Sinif', payload)
+      axios.post(`${ApiData.API_URL}Sinif`, payload)
         .then(() => {
           alert('Sınıf eklendi');
           onSuccess();
-          onClose();
+          closePopup();
         })
         .catch(() => alert('Ekleme hatası'));
     } else if (type === 'edit') {
-      axios.put(`https://localhost:7004/api/Sinif/${classId}`, payload)
+      axios.put(`${ApiData.API_URL}Sinif/${classId}`, payload)
         .then(() => {
           alert('Sınıf güncellendi');
           onSuccess();
-          onClose();
+          closePopup();
         })
         .catch(() => alert('Güncelleme hatası'));
     }
@@ -78,23 +69,9 @@ function PopupClass({ type, classId, onClose, onSuccess }) {
           />
         </div>
 
-        <div style={{ marginBottom: 12 }}>
-          <label style={{ color: '#333' }}>Öğretmen Seç:</label><br/>
-          <select
-            value={teacherId}
-            onChange={e => setTeacherId(e.target.value)}
-            style={{ width: '100%', padding: 6, marginTop: 4 }}
-          >
-            <option value="">Seçiniz</option>
-            {teachers.map(t => (
-              <option key={t.id} value={t.id}>{t.name} {t.surname}</option>
-            ))}
-          </select>
-        </div>
-
         <div style={{ textAlign: 'right' }}>
           <button
-            onClick={onClose}
+            onClick={closePopup}
             style={{
               marginRight: 8,
               backgroundColor: '#6c757d',

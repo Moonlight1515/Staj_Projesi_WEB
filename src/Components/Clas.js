@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ClassPopup from './PopupClass';
+import ApiData from '../config.json';
 import './class.css';
 
 function Class() {
@@ -11,7 +12,7 @@ function Class() {
 
   const fetchClasses = async () => {
     try {
-      const res = await axios.get('https://localhost:7004/api/Sinif'); // Gerekirse ApiData ile değiştir
+      const res = await axios.get(ApiData.API_URL + "Sinif"); // ✅ ApiData kullanıldı
       setClasses(res.data || []);
     } catch {
       setClasses([]);
@@ -30,19 +31,16 @@ function Class() {
 
   return (
     <div
-  className="page-background"
-  style={{
-    padding: 20,
-    width: '100%',
-    whiteSpace: 'nowrap',
-    overflowX: 'auto',
-    color: 'white',
-    boxSizing: 'border-box'
-  }}
->
-
-
-
+      className="page-background"
+      style={{
+        padding: 20,
+        width: '100%',
+        whiteSpace: 'nowrap',
+        overflowX: 'auto',
+        color: 'white',
+        boxSizing: 'border-box'
+      }}
+    >
       <h2>Sınıflar</h2>
 
       <button
