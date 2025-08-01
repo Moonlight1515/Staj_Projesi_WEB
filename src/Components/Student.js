@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PopupStudent from './PopupStudent';
 import ApiData from '../config.json';
-import Button from 'react-bootstrap/Button';
-import './Student.css'; // ✅ Bu doğru
- // Arka plan ve stil için CSS
 
 function Student() {
   const [students, setStudents] = useState([]);
+  const [siniflar, setSiniflar] = useState([]);
   const [popupType, setPopupType] = useState(null);
   const [selectedStudentId, setSelectedStudentId] = useState(null);
   const [refreshFlag, setRefreshFlag] = useState(false);
@@ -17,8 +15,19 @@ function Student() {
     try {
       const res = await axios.get(ApiData.API_URL + 'Ogrenci');
       setStudents(res.data.data || []);
-    } catch {
+    } catch (error) {
       setStudents([]);
+      console.error('Öğrenciler alınamadı', error);
+    }
+  };
+
+  const fetchSiniflar = async () => {
+    try {
+      const res = await axios.get(ApiData.API_URL + 'Sinif');
+      setSiniflar(res.data.data || []);
+    } catch (error) {
+      setSiniflar([]);
+      console.error('Sınıflar alınamadı', error);
     }
   };
 
@@ -27,7 +36,6 @@ function Student() {
       fetchStudents();
       return;
     }
-
     try {
       const res = await axios.get(`${ApiData.API_URL}Ogrenci/AraTc/${searchTC.trim()}`);
       if (res.data.status) {
@@ -37,42 +45,57 @@ function Student() {
         alert('TC ile eşleşen öğrenci bulunamadı');
       }
     } catch (error) {
-      console.error('Arama hatası:', error);
-      alert('TC ile eşleşen öğrenci bulunamadı');
+      setStudents([]);
+      alert('Arama sırasında hata oluştu');
+      console.error(error);
     }
   };
 
   useEffect(() => {
     fetchStudents();
+    fetchSiniflar();
   }, [refreshFlag]);
 
   const handleClosePopup = () => {
     setPopupType(null);
     setSelectedStudentId(null);
-    setRefreshFlag(!refreshFlag);
+    setRefreshFlag(prev => !prev);
+  };
+
+  const getSinifName = (id) => {
+    if (!id) return '';
+    const sinif = siniflar.find(s => s.id.toString() === id.toString());
+    return sinif ? sinif.name : '';
   };
 
   return (
-    <div className="page-background">
+    <div className="page-background" style={{ padding: 20, color: 'white' }}>
+      <h2>Öğrenciler</h2>
+
       <input
         type="text"
         placeholder="TC ile ara"
         value={searchTC}
-        onChange={(e) => setSearchTC(e.target.value)}
-        style={{ marginRight: 8 }}
+        onChange={e => setSearchTC(e.target.value)}
+        style={{ marginRight: 8, padding: 6, borderRadius: 4 }}
       />
-      <Button variant="primary" onClick={searchByTC} style={{ marginRight: 8 }}>
-        Ara
-      </Button>
-      <Button variant="secondary" onClick={() => { setSearchTC(''); fetchStudents(); }} style={{ marginRight: 8 }}>
+      <button onClick={searchByTC} style={buttonStyle}>Ara</button>
+      <button onClick={() => { setSearchTC(''); fetchStudents(); }} style={buttonStyle}>
         Temizle
-      </Button>
+      </button>
 
-      <button onClick={() => setPopupType('add')} style={{ marginLeft: 16 }}>
+      <button
+        onClick={() => setPopupType('add')}
+        style={{ ...buttonStyle, marginLeft: 16, backgroundColor: '#28a745' }}
+      >
         Öğrenci Ekle
       </button>
 
-      <table border="1" cellPadding="5" style={{ marginTop: 10, borderCollapse: 'collapse', color: 'white' }}>
+      <table
+        border="1"
+        cellPadding="5"
+        style={{ marginTop: 10, borderCollapse: 'collapse', width: '100%', backgroundColor: 'rgba(0,0,0,0.4)', color: 'white' }}
+      >
         <thead>
           <tr>
             <th>Ad</th>
@@ -81,19 +104,17 @@ function Student() {
             <th>Telefon</th>
             <th>Cinsiyet</th>
             <th>Doğum Tarihi</th>
-            <th>Sınıf ID</th>
+            <th>Sınıf</th>
             <th>İşlemler</th>
           </tr>
         </thead>
         <tbody>
           {students.length === 0 ? (
             <tr>
-              <td colSpan="8" style={{ textAlign: 'center' }}>
-                Kayıt bulunamadı
-              </td>
+              <td colSpan="8" style={{ textAlign: 'center' }}>Kayıt bulunamadı</td>
             </tr>
           ) : (
-            students.map((s) => (
+            students.map(s => (
               <tr key={s.id}>
                 <td>{s.firstName}</td>
                 <td>{s.surname}</td>
@@ -101,12 +122,12 @@ function Student() {
                 <td>{s.phone}</td>
                 <td>{s.gender}</td>
                 <td>{s.dateOfBirth ? new Date(s.dateOfBirth).toLocaleDateString() : '-'}</td>
-                <td>{s.sinifId}</td>
+                <td>{getSinifName(s.sinifId)}</td>
                 <td>
-                  <button onClick={() => { setSelectedStudentId(s.id); setPopupType('edit'); }}>
+                  <button onClick={() => { setSelectedStudentId(s.id); setPopupType('edit'); }} style={buttonStyle}>
                     Düzenle
                   </button>
-                  <button onClick={() => { setSelectedStudentId(s.id); setPopupType('delete'); }}>
+                  <button onClick={() => { setSelectedStudentId(s.id); setPopupType('delete'); }} style={{ ...buttonStyle, backgroundColor: '#dc3545' }}>
                     Sil
                   </button>
                 </td>
@@ -117,10 +138,26 @@ function Student() {
       </table>
 
       {popupType && (
-        <PopupStudent type={popupType} studentId={selectedStudentId} closePopup={handleClosePopup} />
+        <PopupStudent
+          type={popupType}
+          studentId={selectedStudentId}
+          closePopup={handleClosePopup}
+          siniflar={siniflar} // sınıf listesini popup'a da gönderiyoruz
+        />
       )}
     </div>
   );
 }
 
+const buttonStyle = {
+  padding: '6px 12px',
+  marginRight: 8,
+  borderRadius: 4,
+  border: 'none',
+  backgroundColor: '#007bff',
+  color: 'white',
+  cursor: 'pointer',
+};
+
 export default Student;
+
