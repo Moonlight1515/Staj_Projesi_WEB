@@ -50,7 +50,21 @@ function Teacher() {
   };
 
   return (
-    <div className="page-background" style={{ padding: 20, maxWidth: 900, margin: 'auto', color: 'white' }}>
+    <div
+  className="page-background"
+  style={{
+    padding: 20,
+    width: '100%',
+    whiteSpace: 'nowrap',
+    overflowX: 'auto',
+    color: 'white',
+    boxSizing: 'border-box'
+  }}
+>
+
+
+
+
       <h2>Öğretmenler</h2>
 
       <input

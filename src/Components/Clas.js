@@ -29,7 +29,20 @@ function Class() {
   };
 
   return (
-    <div className="page-background" style={{ padding: 20, maxWidth: 600, margin: 'auto', color: 'white' }}>
+    <div
+  className="page-background"
+  style={{
+    padding: 20,
+    width: '100%',
+    whiteSpace: 'nowrap',
+    overflowX: 'auto',
+    color: 'white',
+    boxSizing: 'border-box'
+  }}
+>
+
+
+
       <h2>Sınıflar</h2>
 
       <button
