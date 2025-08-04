@@ -10,6 +10,23 @@ function Student() {
   const [selectedStudentId, setSelectedStudentId] = useState(null);
   const [refreshFlag, setRefreshFlag] = useState(false);
   const [searchTC, setSearchTC] = useState('');
+   const [sinifId, setSinifId] = useState('');
+
+  
+const sabitSiniflar = [
+  { id: 19, name: '9/A' },
+  { id: 20, name: '9/B' },
+  { id: 21, name: '9/C' },
+  { id: 22, name: '10/A' },
+  { id: 23, name: '10/B' },
+  { id: 24, name: '10/C' },
+  { id: 25, name: '11/A' },
+  { id: 26, name: '11/B' },
+  { id: 27, name: '11/C' },
+  { id: 28, name: '12/A' },
+  { id: 29, name: '12/B' },
+  { id: 30, name: '12/C' },
+];
 
   const fetchStudents = async () => {
     try {
@@ -61,11 +78,11 @@ function Student() {
     setSelectedStudentId(null);
     setRefreshFlag(prev => !prev);
   };
-
-  const getSinifName = (id) => {
-    if (!id) return '';
-    const sinif = siniflar.find(s => s.id.toString() === id.toString());
-    return sinif ? sinif.name : '';
+   const getSinifName = (id) => {
+  if (!id) return '';
+  const sinif = siniflar.find(s => s.id.toString() === id.toString()) || 
+                sabitSiniflar.find(s => s.id.toString() === id.toString());
+  return sinif ? sinif.name : '';
   };
 
   return (

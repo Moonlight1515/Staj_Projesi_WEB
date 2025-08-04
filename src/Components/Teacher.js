@@ -63,8 +63,6 @@ function Teacher() {
 >
 
 
-
-
       <h2>Öğretmenler</h2>
 
       <input
