@@ -8,20 +8,28 @@ import Teacher from './Components/Teacher';
 import Class from './Components/Clas';
 
 function App() {
-  const [page, setPage] = useState('home'); // home, login, register, student, teacher, class
-  const [user, setUser] = useState(null);   // Giriş yapan kullanıcının bilgisi
+  const [page, setPage] = useState('home');
+  const [user, setUser] = useState(null);
 
-  // Login başarılı olursa çağrılacak fonksiyon
   const handleLoginSuccess = (userData) => {
     setUser(userData);
-    // Kullanıcının tipine göre page belirle
-    if (userData.role === 'student') setPage('student');
-    else if (userData.role === 'teacher') setPage('teacher');
-    else if (userData.role === 'class') setPage('class');
-    else setPage('home');
+
+    // Rol Id’ye göre ilk sayfayı belirle
+    switch (userData.roleId) {
+      case 1: // Müdür/Admin
+        setPage('student'); // ilk sayfa öğrenci olabilir
+        break;
+      case 2: // Öğrenci
+        setPage('student');
+        break;
+      case 3: // Öğretmen
+        setPage('teacher');
+        break;
+      default:
+        setPage('home');
+    }
   };
 
-  // Çıkış yapılacaksa kullanıcıyı temizle ve ana sayfaya dön
   const handleLogout = () => {
     setUser(null);
     setPage('home');
@@ -29,11 +37,18 @@ function App() {
 
   return (
     <div className="App">
-      {/* Arka plan için css ile menu.png ekleyeceğiz */}
+      {/* Menü sadece giriş yapıldıysa gözüksün */}
       <nav style={{ display: user ? 'flex' : 'none', gap: '15px', padding: '10px', backgroundColor: '#eee' }}>
-        <button onClick={() => setPage('student')}>Öğrenci</button>
-        <button onClick={() => setPage('teacher')}>Öğretmen</button>
-        <button onClick={() => setPage('class')}>Sınıf</button>
+        {/* Sadece Müdür rolü tüm butonları görebilsin */}
+        {(user?.roleId === 1 || user?.roleId === 2) && (
+          <button onClick={() => setPage('student')}>Öğrenci</button>
+        )}
+        {(user?.roleId === 1 || user?.roleId === 3) && (
+          <button onClick={() => setPage('teacher')}>Öğretmen</button>
+        )}
+        {user?.roleId === 1 && (
+          <button onClick={() => setPage('class')}>Sınıf</button>
+        )}
         <button onClick={handleLogout}>Çıkış</button>
       </nav>
 
