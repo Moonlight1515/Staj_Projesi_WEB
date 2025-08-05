@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; 
 import axios from 'axios';
 import ApiData from './config.json';
 import './auth.css';
@@ -28,10 +28,9 @@ function Login({ onLoginSuccess }) {
     try {
       const res = await axios.post(ApiData.API_URL + 'Auth/login', {
         UserName: form.userName,
-        PasswordHash: form.password
+        PasswordHash: form.password  // Normal şifre gönderiyoruz, backend hash'leyip karşılaştıracak
       });
 
-      // Backend'den roleId ve role (rol adı) geliyor
       const roleId = res.data.roleId || 0;
       const roleName = res.data.role || getRoleNameById(roleId);
 
