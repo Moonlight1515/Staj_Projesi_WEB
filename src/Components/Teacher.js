@@ -6,23 +6,42 @@ import './teacher.css';
 
 function Teacher() {
   const [teachers, setTeachers] = useState([]);
+  const [branslar, setBranslar] = useState([]);
   const [popupType, setPopupType] = useState(null);
   const [selectedTeacherId, setSelectedTeacherId] = useState(null);
   const [refreshFlag, setRefreshFlag] = useState(false);
   const [searchTC, setSearchTC] = useState('');
+  const [loading, setLoading] = useState(true);
 
-  const fetchTeachers = async () => {
-    try {
-      const res = await axios.get(ApiData.API_URL + 'Ogretmen');
-      setTeachers(res.data.data || []);
-    } catch {
-      setTeachers([]);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const [resTeachers, resBranslar] = await Promise.all([
+          axios.get(ApiData.API_URL + 'Ogretmen'),
+          axios.get(ApiData.API_URL + 'Branslar'),
+        ]);
 
+        console.log('Öğretmenler (API):', resTeachers.data.data);
+        console.log('Branşlar (API):', resBranslar.data.data);
+
+        setTeachers(resTeachers.data.data || []);
+        setBranslar(resBranslar.data.data || []);
+      } catch (error) {
+        console.error('Veri çekme hatası:', error);
+        setTeachers([]);
+        setBranslar([]);
+      }
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [refreshFlag]);
+
+  // TC ile arama fonksiyonu
   const searchByTC = async () => {
     if (!searchTC.trim()) {
-      fetchTeachers();
+      setRefreshFlag(!refreshFlag);
       return;
     }
     try {
@@ -39,30 +58,34 @@ function Teacher() {
     }
   };
 
-  useEffect(() => {
-    fetchTeachers();
-  }, [refreshFlag]);
-
   const handleClosePopup = () => {
     setPopupType(null);
     setSelectedTeacherId(null);
     setRefreshFlag(!refreshFlag);
   };
 
+  const buttonStyle = {
+    padding: '6px 12px',
+    marginRight: 8,
+    borderRadius: 4,
+    border: 'none',
+    backgroundColor: '#007bff',
+    color: 'white',
+    cursor: 'pointer',
+  };
+
   return (
     <div
-  className="page-background"
-  style={{
-    padding: 20,
-    width: '100%',
-    whiteSpace: 'nowrap',
-    overflowX: 'auto',
-    color: 'white',
-    boxSizing: 'border-box'
-  }}
->
-
-
+      className="page-background"
+      style={{
+        padding: 20,
+        width: '100%',
+        whiteSpace: 'nowrap',
+        overflowX: 'auto',
+        color: 'white',
+        boxSizing: 'border-box',
+      }}
+    >
       <h2>Öğretmenler</h2>
 
       <input
@@ -78,7 +101,7 @@ function Teacher() {
       <button
         onClick={() => {
           setSearchTC('');
-          fetchTeachers();
+          setRefreshFlag(!refreshFlag);
         }}
         style={buttonStyle}
       >
@@ -89,83 +112,90 @@ function Teacher() {
         Öğretmen Ekle
       </button>
 
-      <table
-        border="1"
-        cellPadding="5"
-        style={{
-          marginTop: 10,
-          borderCollapse: 'collapse',
-          width: '100%',
-          color: 'white',
-          backgroundColor: 'rgba(0,0,0,0.4)',
-        }}
-      >
-        <thead>
-          <tr>
-            <th>Ad</th>
-            <th>Soyad</th>
-            <th>TC</th>
-            <th>Telefon</th>
-            <th>Email</th>
-            <th>Doğum Tarihi</th>
-            <th>İşlemler</th>
-          </tr>
-        </thead>
-        <tbody>
-          {teachers.length === 0 ? (
+      {loading ? (
+        <p>Yükleniyor...</p>
+      ) : (
+        <table
+          border="1"
+          cellPadding="5"
+          style={{
+            marginTop: 10,
+            borderCollapse: 'collapse',
+            width: '100%',
+            color: 'white',
+            backgroundColor: 'rgba(0,0,0,0.4)',
+          }}
+        >
+          <thead>
             <tr>
-              <td colSpan="7" style={{ textAlign: 'center' }}>
-                Kayıt bulunamadı
-              </td>
+              <th>Ad</th>
+              <th>Soyad</th>
+              <th>TC</th>
+              <th>Telefon</th>
+              <th>Email</th>
+              <th>Doğum Tarihi</th>
+              <th>Branş</th>
+              <th>İşlemler</th>
             </tr>
-          ) : (
-            teachers.map((t) => (
-              <tr key={t.id}>
-                <td>{t.name}</td>
-                <td>{t.surname}</td>
-                <td>{t.tc}</td>
-                <td>{t.phone}</td>
-                <td>{t.email}</td>
-                <td>{t.dateOfBirth ? new Date(t.dateOfBirth).toLocaleDateString() : '-'}</td>
-                <td>
-                  <button
-                    onClick={() => {
-                      setSelectedTeacherId(t.id);
-                      setPopupType('edit');
-                    }}
-                    style={buttonStyle}
-                  >
-                    Düzenle
-                  </button>
-                  <button
-                    onClick={() => {
-                      setSelectedTeacherId(t.id);
-                      setPopupType('delete');
-                    }}
-                    style={{ ...buttonStyle, backgroundColor: '#dc3545' }}
-                  >
-                    Sil
-                  </button>
+          </thead>
+          <tbody>
+            {teachers.length === 0 ? (
+              <tr>
+                <td colSpan="8" style={{ textAlign: 'center' }}>
+                  Kayıt bulunamadı
                 </td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            ) : (
+              teachers.map((t) => {
+                const bransName = branslar.find((b) => b.id === Number(t.bransId))?.name || 'Bilinmiyor';
 
-      {popupType && <PopupTeacher type={popupType} teacherId={selectedTeacherId} closePopup={handleClosePopup} />}
+                return (
+                  <tr key={t.id}>
+                    <td>{t.name}</td>
+                    <td>{t.surname}</td>
+                    <td>{t.tc}</td>
+                    <td>{t.phone}</td>
+                    <td>{t.email}</td>
+                    <td>{t.dateOfBirth ? new Date(t.dateOfBirth).toLocaleDateString() : '-'}</td>
+                    <td>{bransName}</td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          setSelectedTeacherId(t.id);
+                          setPopupType('edit');
+                        }}
+                        style={buttonStyle}
+                      >
+                        Düzenle
+                      </button>
+                      <button
+                        onClick={() => {
+                          setSelectedTeacherId(t.id);
+                          setPopupType('delete');
+                        }}
+                        style={{ ...buttonStyle, backgroundColor: '#dc3545' }}
+                      >
+                        Sil
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })
+            )}
+          </tbody>
+        </table>
+      )}
+
+      {popupType && (
+        <PopupTeacher
+          type={popupType}
+          teacherId={selectedTeacherId}
+          closePopup={handleClosePopup}
+          branslar={branslar}
+        />
+      )}
     </div>
   );
 }
-
-const buttonStyle = {
-  padding: '6px 12px',
-  marginRight: 8,
-  borderRadius: 4,
-  border: 'none',
-  backgroundColor: '#007bff',
-  color: 'white',
-  cursor: 'pointer',
-};
 
 export default Teacher;

@@ -5,17 +5,19 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './Popup.css';
 import ApiData from '../config.json';
 
-function PopupTeacher({ type, teacherId, closePopup }) {
+function PopupTeacher({ type, teacherId, closePopup, branslar }) {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [tc, setTc] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState(null);
+  const [bransId, setBransId] = useState(null); // küçük b
 
   useEffect(() => {
     if ((type === 'edit' || type === 'delete') && teacherId) {
-      axios.get(`${ApiData.API_URL}Ogretmen/${teacherId}`)
+      axios
+        .get(`${ApiData.API_URL}Ogretmen/${teacherId}`)
         .then((res) => {
           const t = res.data.data;
           setName(t?.name || '');
@@ -24,6 +26,7 @@ function PopupTeacher({ type, teacherId, closePopup }) {
           setPhone(t?.phone || '');
           setEmail(t?.email || '');
           setDateOfBirth(t?.dateOfBirth ? new Date(t.dateOfBirth) : null);
+          setBransId(t?.bransId ? Number(t.bransId) : null); // küçük b
         })
         .catch(() => {
           alert('Öğretmen bilgisi alınamadı');
@@ -36,13 +39,16 @@ function PopupTeacher({ type, teacherId, closePopup }) {
       setPhone('');
       setEmail('');
       setDateOfBirth(null);
+      setBransId(null);
     }
   }, [type, teacherId, closePopup]);
 
   const handleConfirm = () => {
-    if ((type === 'add' || type === 'edit') &&
-        (!name || !surname || !tc || !phone || !email || !dateOfBirth)) {
-      alert('Tüm alanları doldurun');
+    if (
+      (type === 'add' || type === 'edit') &&
+      (!name || !surname || !tc || !phone || !email || !dateOfBirth || !bransId)
+    ) {
+      alert('Lütfen tüm alanları doldurun.');
       return;
     }
 
@@ -52,7 +58,8 @@ function PopupTeacher({ type, teacherId, closePopup }) {
       tc,
       phone,
       email,
-      dateOfBirth: dateOfBirth.toISOString()
+      dateOfBirth: dateOfBirth ? dateOfBirth.toISOString() : null,
+      bransId, // küçük b
     };
 
     let request;
@@ -63,13 +70,18 @@ function PopupTeacher({ type, teacherId, closePopup }) {
     } else if (type === 'delete') {
       request = axios.delete(`${ApiData.API_URL}Ogretmen/${teacherId}`);
     } else {
-      alert('Geçersiz işlem');
+      alert('Geçersiz işlem türü');
       return;
     }
 
     request
       .then(() => {
-        const action = type === 'add' ? 'eklendi' : type === 'edit' ? 'güncellendi' : 'silindi';
+        const action =
+          type === 'add'
+            ? 'eklendi'
+            : type === 'edit'
+            ? 'güncellendi'
+            : 'silindi';
         alert(`Öğretmen başarıyla ${action}.`);
         closePopup();
       })
@@ -120,6 +132,25 @@ function PopupTeacher({ type, teacherId, closePopup }) {
                 placeholderText="Doğum Tarihi seçiniz"
                 className="datepicker-input"
               />
+            </div>
+
+            <div className="form-group">
+              <label>Branş</label>
+              <select
+                value={bransId ?? ''}
+                onChange={(e) =>
+                  setBransId(e.target.value ? parseInt(e.target.value) : null)
+                }
+              >
+                <option value="">Branş seçiniz</option>
+                {branslar && branslar.length > 0
+                  ? branslar.map((b) => (
+                      <option key={b.id} value={b.id}>
+                        {b.name}
+                      </option>
+                    ))
+                  : null}
+              </select>
             </div>
           </>
         )}

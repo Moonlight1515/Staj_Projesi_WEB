@@ -128,12 +128,14 @@ function PopupStudent({ type, studentId, closePopup }) {
             <div className="form-group">
               <label>Cinsiyet</label>
               <select value={gender} onChange={(e) => setGender(e.target.value)}>
-                <option value="">Seçiniz</option>
-                <option value="Kadın">Kadın</option>
-                <option value="Erkek">Erkek</option>
-                <option value="Belirtmek İstemiyorum">Belirtmek İstemiyorum</option>
-              </select>
+  <option value="">Seçiniz</option>
+  <option value="kadın">Kadın</option>
+  <option value="erkek">Erkek</option>
+  <option value="belirtmek istemiyorum">Belirtmek İstemiyorum</option>
+</select>
             </div>
+
+            
 
             <div className="form-group">
               <label>Doğum Tarihi</label>
