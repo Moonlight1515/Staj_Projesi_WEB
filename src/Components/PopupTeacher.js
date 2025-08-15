@@ -12,7 +12,7 @@ function PopupTeacher({ type, teacherId, closePopup, branslar }) {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState(null);
-  const [bransId, setBransId] = useState(null); // küçük b
+  const [bransId, setBransId] = useState(null);
 
   useEffect(() => {
     if ((type === 'edit' || type === 'delete') && teacherId) {
@@ -26,7 +26,7 @@ function PopupTeacher({ type, teacherId, closePopup, branslar }) {
           setPhone(t?.phone || '');
           setEmail(t?.email || '');
           setDateOfBirth(t?.dateOfBirth ? new Date(t.dateOfBirth) : null);
-          setBransId(t?.bransId ? Number(t.bransId) : null); // küçük b
+          setBransId(t?.bransId ? Number(t.bransId) : null);
         })
         .catch(() => {
           alert('Öğretmen bilgisi alınamadı');
@@ -59,7 +59,7 @@ function PopupTeacher({ type, teacherId, closePopup, branslar }) {
       phone,
       email,
       dateOfBirth: dateOfBirth ? dateOfBirth.toISOString() : null,
-      bransId, // küçük b
+      bransId,
     };
 
     let request;
@@ -100,27 +100,52 @@ function PopupTeacher({ type, teacherId, closePopup, branslar }) {
           <>
             <div className="form-group">
               <label>Ad</label>
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="input-text"
+              />
             </div>
 
             <div className="form-group">
               <label>Soyad</label>
-              <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} />
+              <input
+                type="text"
+                value={surname}
+                onChange={(e) => setSurname(e.target.value)}
+                className="input-text"
+              />
             </div>
 
             <div className="form-group">
               <label>TC Kimlik No</label>
-              <input type="text" value={tc} onChange={(e) => setTc(e.target.value)} />
+              <input
+                type="text"
+                value={tc}
+                onChange={(e) => setTc(e.target.value)}
+                className="input-text"
+              />
             </div>
 
             <div className="form-group">
               <label>Telefon</label>
-              <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
+              <input
+                type="text"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="input-text"
+              />
             </div>
 
             <div className="form-group">
               <label>Email</label>
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="input-text"
+              />
             </div>
 
             <div className="form-group">
@@ -141,15 +166,16 @@ function PopupTeacher({ type, teacherId, closePopup, branslar }) {
                 onChange={(e) =>
                   setBransId(e.target.value ? parseInt(e.target.value) : null)
                 }
+                className="select-brans"
               >
                 <option value="">Branş seçiniz</option>
-                {branslar && branslar.length > 0
-                  ? branslar.map((b) => (
-                      <option key={b.id} value={b.id}>
-                        {b.name}
-                      </option>
-                    ))
-                  : null}
+                {branslar &&
+                  branslar.length > 0 &&
+                  branslar.map((b) => (
+                    <option key={b.id} value={b.id}>
+                      {b.name}
+                    </option>
+                  ))}
               </select>
             </div>
           </>
@@ -160,8 +186,12 @@ function PopupTeacher({ type, teacherId, closePopup, branslar }) {
         )}
 
         <div className="button-group">
-          <button onClick={handleConfirm}>Onayla</button>
-          <button onClick={closePopup}>İptal</button>
+          <button className="btn-confirm" onClick={handleConfirm}>
+            Onayla
+          </button>
+          <button className="btn-cancel" onClick={closePopup}>
+            İptal
+          </button>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PopupTeacher from './PopupTeacher';
+import PopupGrades from './PopupGrades';
 import ApiData from '../config.json';
 import './teacher.css';
 
@@ -22,9 +23,6 @@ function Teacher() {
           axios.get(ApiData.API_URL + 'Branslar'),
         ]);
 
-        console.log('Öğretmenler (API):', resTeachers.data.data);
-        console.log('Branşlar (API):', resBranslar.data.data);
-
         setTeachers(resTeachers.data.data || []);
         setBranslar(resBranslar.data.data || []);
       } catch (error) {
@@ -38,7 +36,6 @@ function Teacher() {
     fetchData();
   }, [refreshFlag]);
 
-  // TC ile arama fonksiyonu
   const searchByTC = async () => {
     if (!searchTC.trim()) {
       setRefreshFlag(!refreshFlag);
@@ -86,7 +83,8 @@ function Teacher() {
         boxSizing: 'border-box',
       }}
     >
-      <h2>Öğretmenler</h2>
+     <h2 className="title-box">Öğretmenler</h2>
+
 
       <input
         type="text"
@@ -177,6 +175,15 @@ function Teacher() {
                       >
                         Sil
                       </button>
+                      <button
+                        onClick={() => {
+                          setSelectedTeacherId(t.id);
+                          setPopupType('grades');
+                        }}
+                        style={{ ...buttonStyle, backgroundColor: '#ffc107' }}
+                      >
+                        Notlar
+                      </button>
                     </td>
                   </tr>
                 );
@@ -186,12 +193,19 @@ function Teacher() {
         </table>
       )}
 
-      {popupType && (
+      {popupType && popupType !== 'grades' && (
         <PopupTeacher
           type={popupType}
           teacherId={selectedTeacherId}
           closePopup={handleClosePopup}
           branslar={branslar}
+        />
+      )}
+
+      {popupType === 'grades' && (
+        <PopupGrades
+          teacherId={selectedTeacherId}
+          closePopup={handleClosePopup}
         />
       )}
     </div>

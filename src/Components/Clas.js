@@ -41,7 +41,7 @@ function Class() {
         boxSizing: 'border-box'
       }}
     >
-      <h2>Sınıflar</h2>
+      <h2 className="title-box">Sınıflar</h2>
 
       <button
         onClick={() => setPopupType('add')}

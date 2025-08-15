@@ -6,7 +6,7 @@ html, body, #root {
 
 .page-background {
   height: 100vh;
-  background-image: url('./arkaplan.jpg'); /* Arka plan resmini public içine koy */
+  background-image: url('./arkaplan.png'); /* Arka plan resmini public içine koy */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

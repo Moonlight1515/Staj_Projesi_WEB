@@ -87,7 +87,7 @@ const sabitSiniflar = [
 
   return (
     <div className="page-background" style={{ padding: 20, color: 'white' }}>
-      <h2>Öğrenciler</h2>
+      <h2 className="title-box">Öğrenciler</h2>
 
       <input
         type="text"
