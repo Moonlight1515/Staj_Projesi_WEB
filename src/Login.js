@@ -49,6 +49,7 @@ function Login({ onLoginSuccess }) {
   };
 
   return (
+  <div className="home-container">
     <form onSubmit={handleSubmit} className="auth-form">
       <h2>Login</h2>
       <input
@@ -68,7 +69,9 @@ function Login({ onLoginSuccess }) {
       />
       <button type="submit">Giriş Yap</button>
     </form>
-  );
+  </div>
+);
+
 }
 
 export default Login;

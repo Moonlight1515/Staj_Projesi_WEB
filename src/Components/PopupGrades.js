@@ -9,7 +9,7 @@ function PopupGrades({ teacherId, closePopup }) {
   const [loading, setLoading] = useState(true);
   const [bransId, setBransId] = useState(null);
 
-  // 1️⃣ Öğretmenin branşını al
+  // Öğretmenin branşını al
   useEffect(() => {
     if (!teacherId) return;
 
@@ -25,7 +25,7 @@ function PopupGrades({ teacherId, closePopup }) {
       });
   }, [teacherId]);
 
-  // 2️⃣ Öğrencileri al
+  // Öğrencileri al
   useEffect(() => {
     if (!teacherId) return;
     setLoading(true);
@@ -43,7 +43,7 @@ function PopupGrades({ teacherId, closePopup }) {
       });
   }, [teacherId]);
 
-  // 3️⃣ Seçilen öğrencinin notlarını al
+  // Seçilen öğrencinin notlarını al
   useEffect(() => {
     if (!selectedStudentId) return;
     setLoading(true);
@@ -51,7 +51,7 @@ function PopupGrades({ teacherId, closePopup }) {
     axios.get(`${ApiData.API_URL}Ogrenci/${selectedStudentId}/notlar`)
       .then(res => {
         const notlarArray = res.data.data || [];
-        const data = notlarArray[0] || {}; // İlk branşı göster
+        const data = notlarArray[0] || {};
         setGrades({
           sinav1: data.sinav1 ?? 0,
           sinav2: data.sinav2 ?? 0,
@@ -69,7 +69,10 @@ function PopupGrades({ teacherId, closePopup }) {
   }, [selectedStudentId]);
 
   const handleGradeChange = (alan, value) => {
-    setGrades(prev => ({ ...prev, [alan]: Number(value) }));
+    let val = Number(value);
+    if (val < 0) val = 0;
+    if (val > 100) val = 100;
+    setGrades(prev => ({ ...prev, [alan]: val }));
   };
 
   const handleSave = async () => {
@@ -91,6 +94,7 @@ function PopupGrades({ teacherId, closePopup }) {
 
       await axios.post(`${ApiData.API_URL}Notlar/ekle`, dto);
       alert('Not başarıyla kaydedildi.');
+      closePopup();
     } catch (err) {
       console.error('Not kaydetme hatası:', err);
       alert('Not kaydedilirken hata oluştu.');
@@ -138,18 +142,22 @@ function PopupGrades({ teacherId, closePopup }) {
                   <tr>
                     <td>{students.find(s => s.id === Number(selectedStudentId))?.firstName}</td>
                     <td>{students.find(s => s.id === Number(selectedStudentId))?.surname}</td>
-                    {['sinav1', 'sinav2', 'sozlu1', 'sozlu2'].map(alan => (
-                      <td key={alan}>
-                        <input
-                          type="number"
-                          min="0"
-                          max="100"
-                          value={grades[alan]}
-                          onChange={(e) => handleGradeChange(alan, e.target.value)}
-                          style={{ width: '60px' }}
-                        />
-                      </td>
-                    ))}
+                   {['sinav1', 'sinav2', 'sozlu1', 'sozlu2'].map(alan => (
+  <td key={alan}>
+    <input
+      type="text"
+      value={grades[alan]}
+      onChange={(e) => {
+        const val = e.target.value.replace(/\D/g, ''); // sadece rakam
+        if (val === '' || (Number(val) >= 0 && Number(val) <= 100)) {
+          setGrades(prev => ({ ...prev, [alan]: val }));
+        }
+      }}
+      style={{ width: '60px' }}
+    />
+  </td>
+))}
+
                   </tr>
                 </tbody>
               </table>
@@ -158,8 +166,33 @@ function PopupGrades({ teacherId, closePopup }) {
         )}
 
         <div className="button-group" style={{ marginTop: 10 }}>
-          <button onClick={handleSave} style={{ marginRight: 5 }}>Kaydet</button>
-          <button onClick={closePopup}>Kapat</button>
+          <button
+            onClick={handleSave}
+            style={{
+              backgroundColor: '#28a745',
+              color: 'white',
+              padding: '8px 16px',
+              borderRadius: '6px',
+              border: 'none',
+              cursor: 'pointer',
+              marginRight: '5px'
+            }}
+          >
+            Kaydet
+          </button>
+          <button
+            onClick={closePopup}
+            style={{
+              backgroundColor: '#dc3545',
+              color: 'white',
+              padding: '8px 16px',
+              borderRadius: '6px',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            Kapat
+          </button>
         </div>
       </div>
     </div>
