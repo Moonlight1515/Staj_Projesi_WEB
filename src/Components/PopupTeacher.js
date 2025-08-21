@@ -5,6 +5,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './Popup.css';
 import ApiData from '../config.json';
 
+const typeTitles = {
+  add: "Öğretmen Ekle",
+  edit: "Öğretmen Düzenle",
+  delete: "Öğretmen Sil",
+  grades: "Öğretmen Branşları"
+};
+
 function PopupTeacher({ type, teacherId, closePopup, branslar }) {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
@@ -94,7 +101,7 @@ function PopupTeacher({ type, teacherId, closePopup, branslar }) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h3>{type.toUpperCase()} Öğretmen</h3>
+        <h3>{typeTitles[type] || "İşlem"}</h3>
 
         {(type === 'add' || type === 'edit') && (
           <>

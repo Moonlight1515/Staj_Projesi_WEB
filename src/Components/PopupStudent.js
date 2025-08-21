@@ -4,7 +4,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Popup.css';
 import ApiData from '../config.json';
-import PopupGrades from './PopupGrades'; // Notlar popup'ı
 
 const sabitSiniflar = [
   { id: 19, name: '9/A' }, { id: 20, name: '9/B' }, { id: 21, name: '9/C' },
@@ -12,6 +11,13 @@ const sabitSiniflar = [
   { id: 25, name: '11/A' }, { id: 26, name: '11/B' }, { id: 27, name: '11/C' },
   { id: 28, name: '12/A' }, { id: 29, name: '12/B' }, { id: 30, name: '12/C' },
 ];
+
+const typeTitles = {
+  add: "Öğrenci Ekle",
+  edit: "Öğrenci Düzenle",
+  delete: "Öğrenci Sil",
+  grades: "Öğrenci Notları"
+};
 
 function PopupStudent({ type, studentId, closePopup }) {
   const [firstName, setFirstName] = useState('');
@@ -22,10 +28,12 @@ function PopupStudent({ type, studentId, closePopup }) {
   const [dateOfBirth, setDateOfBirth] = useState(null);
   const [sinifId, setSinifId] = useState('');
 
-  // Notlar popup state
-  const [showGrades, setShowGrades] = useState(false);
+  const [grades, setGrades] = useState([]);
+  const [average, setAverage] = useState(0);
+  const [karneTuru, setKarneTuru] = useState('');
 
   useEffect(() => {
+    // Öğrenci bilgilerini çek
     if ((type === 'edit' || type === 'delete') && studentId) {
       axios.get(`${ApiData.API_URL}Ogrenci/${studentId}`)
         .then(res => {
@@ -46,6 +54,32 @@ function PopupStudent({ type, studentId, closePopup }) {
       setFirstName(''); setSurname(''); setTc(''); setPhone('');
       setGender(''); setDateOfBirth(null); setSinifId('');
     }
+
+    // Notları çek
+    if (studentId && type === 'grades') {
+      axios.get(`${ApiData.API_URL}Ogrenci/${studentId}/notlar`)
+        .then(res => {
+          const data = res.data.data || [];
+          setGrades(data);
+
+          if (data.length > 0) {
+            const ort = data.reduce((acc, g) => acc + (g.ortalama || 0), 0) / data.length;
+            setAverage(ort.toFixed(2));
+            if (ort >= 85) setKarneTuru('Taktir');
+            else if (ort >= 70) setKarneTuru('Teşekkür');
+            else if (ort >= 50) setKarneTuru('Geçti');
+            else setKarneTuru('Kaldı');
+          } else {
+            setAverage(0);
+            setKarneTuru('Kaldı');
+          }
+        })
+        .catch(() => {
+          setGrades([]);
+          setAverage(0);
+          setKarneTuru('Kaldı');
+        });
+    }
   }, [type, studentId, closePopup]);
 
   const handleConfirm = () => {
@@ -58,7 +92,7 @@ function PopupStudent({ type, studentId, closePopup }) {
     const payload = {
       firstName, surname, tc, phone,
       gender: gender.toLowerCase(),
-      dateOfBirth: dateOfBirth.toISOString().split('T')[0],
+      dateOfBirth: dateOfBirth?.toISOString().split('T')[0],
       sinifId: Number(sinifId),
     };
 
@@ -68,16 +102,22 @@ function PopupStudent({ type, studentId, closePopup }) {
     else if (type === 'delete') request = axios.delete(`${ApiData.API_URL}Ogrenci/${studentId}`);
     else return alert('Geçersiz işlem');
 
-    request.then(() => {
-      alert(`Öğrenci başarıyla ${type === 'add' ? 'eklendi' : type === 'edit' ? 'güncellendi' : 'silindi'}.`);
-      closePopup();
-    }).catch(() => alert('İşlem sırasında hata oluştu.'));
-  };
+    request
+      .then(res => {
+        alert(res.data.message);
+        closePopup();
+      })
+      .catch(err => {
+        const msg = err.response?.data?.message || "İşlem sırasında hata oluştu.";
+        alert(msg);
+      });
+  }; // ✅ Eksik kapanış buradaydı
 
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h3>{type.toUpperCase()} Öğrenci</h3>
+        <h3>{typeTitles[type] || "Öğrenci İşlemi"}</h3>
+
 
         {(type === 'add' || type === 'edit') && (
           <>
@@ -105,33 +145,53 @@ function PopupStudent({ type, studentId, closePopup }) {
                 {sabitSiniflar.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
               </select>
             </div>
-
-            {/* Notlar Butonu */}
-{studentId && type !== 'add' && (
-  <button
-    style={{ backgroundColor: '#ffc107', padding: '5px 10px', marginTop: 10 }}
-    onClick={() => setShowGrades(true)}
-  >
-    Notları Görüntüle / Düzenle
-  </button>
-)}
-
-{/* Notlar Popup */}
-{showGrades && (
-  <PopupGrades
-    studentId={studentId}
-    closePopup={() => setShowGrades(false)}
-  />
-)}
-
           </>
         )}
 
         {type === 'delete' && <p>Bu öğrenciyi silmek istediğinizden emin misiniz?</p>}
 
+        {type === 'grades' && (
+          <div className="grades-section">
+            <table>
+              <thead>
+                <tr>
+                  <th>Branş</th>
+                  <th>Öğretmen</th>
+                  <th>Sınav1</th>
+                  <th>Sınav2</th>
+                  <th>Sözlü1</th>
+                  <th>Sözlü2</th>
+                  <th>Ortalama</th>
+                  <th>Durum</th>
+                </tr>
+              </thead>
+              <tbody>
+                {grades.length === 0 ? (
+                  <tr><td colSpan="8" style={{ textAlign: 'center' }}>Not bulunamadı</td></tr>
+                ) : grades.map(g => (
+                  <tr key={g.id}>
+                    <td>{g.bransAdi}</td>
+                    <td>{g.ogretmenAdi} {g.ogretmenSoyadi}</td>
+                    <td>{g.sinav1}</td>
+                    <td>{g.sinav2}</td>
+                    <td>{g.sozlu1}</td>
+                    <td>{g.sozlu2}</td>
+                    <td>{g.ortalama}</td>
+                    <td>{g.durum}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p><strong>Dönem Sonu Ortalama:</strong> {average}</p>
+            <p><strong>Karne Türü:</strong> {karneTuru}</p>
+          </div>
+        )}
+
         <div className="button-group">
-          <button onClick={handleConfirm}>Onayla</button>
-          <button onClick={closePopup}>İptal</button>
+          {(type === 'add' || type === 'edit' || type === 'delete') && (
+            <button onClick={handleConfirm} className="btn-confirm">Onayla</button>
+          )}
+          <button onClick={closePopup} className="btn-cancel">Kapat</button>
         </div>
       </div>
     </div>
