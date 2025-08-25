@@ -38,23 +38,17 @@ function Student() {
     }
   };
 
-  const searchByTC = async () => {
-    if (!searchTC.trim()) {
-      fetchStudents();
-      return;
-    }
+  const searchByTC = async (tc) => {
     try {
-      const res = await axios.get(`${ApiData.API_URL}Ogrenci/AraTc/${searchTC.trim()}`);
+      const res = await axios.get(`${ApiData.API_URL}Ogrenci/AraTc/${tc.trim()}`);
       if (res.data.status) {
-        setStudents([res.data.data]);
+        setStudents(res.data.data);
       } else {
         setStudents([]);
-        alert('TC ile eşleşen öğrenci bulunamadı');
       }
     } catch (error) {
       setStudents([]);
-      alert('Arama sırasında hata oluştu');
-      console.error(error);
+      console.error('Arama sırasında hata oluştu', error);
     }
   };
 
@@ -71,7 +65,7 @@ function Student() {
 
   const getSinifName = (id) => {
     if (!id) return '';
-    const sinif = siniflar.find(s => s.id.toString() === id.toString()) || 
+    const sinif = siniflar.find(s => s.id.toString() === id.toString()) ||
                   sabitSiniflar.find(s => s.id.toString() === id.toString());
     return sinif ? sinif.name : '';
   };
@@ -84,10 +78,19 @@ function Student() {
         type="text"
         placeholder="TC ile ara"
         value={searchTC}
-        onChange={e => setSearchTC(e.target.value)}
+        onChange={e => {
+          const value= e.target.value.replace(/\D/g, ''); ;
+          setSearchTC(value);
+
+          if (value.trim().length >= 3) {
+            searchByTC(value);   
+          } else {
+            fetchStudents();     
+          }
+        }}
         style={{ marginRight: 8, padding: 6, borderRadius: 4 }}
       />
-      <button onClick={searchByTC} style={buttonStyle}>Ara</button>
+
       <button onClick={() => { setSearchTC(''); fetchStudents(); }} style={buttonStyle}>
         Temizle
       </button>
@@ -168,8 +171,6 @@ const buttonStyle = {
   backgroundColor: '#007bff',
   color: 'white',
   cursor: 'pointer',
-  
 };
-
 
 export default Student;

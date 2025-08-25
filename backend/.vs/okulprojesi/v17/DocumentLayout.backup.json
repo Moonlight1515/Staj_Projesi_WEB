@@ -1,0 +1,395 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Zehra\\school-system\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\controllers\\ogrencicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\controllers\\ogrencicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\entities\\sinif.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\entities\\sinif.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\models\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\models\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\models\\role.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\controllers\\ogretmencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\controllers\\ogretmencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\entities\\ogrenci.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\entities\\ogrenci.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\controllers\\sinifcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\controllers\\sinifcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\controllers\\notlarcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\controllers\\notlarcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\models\\notekledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\models\\notekledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\controllers\\branslarcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\controllers\\branslarcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\entities\\brans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\entities\\brans.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\data\\okuldb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\data\\okuldb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\data\\okuldbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\data\\okuldbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\entities\\ogretmen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\entities\\ogretmen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\models\\creativeogretmenviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\models\\creativeogretmenviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\models\\userregisterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\models\\userregisterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\models\\creativeogrenciviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\models\\creativeogrenciviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\models\\creativesinifviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\models\\creativesinifviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|c:\\users\\zehra\\school-system\\backend\\okulprojesi\\mappingprofiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{178384E6-7C8D-451A-BFE6-5794AD88AC99}|okulprojesi\\okulprojesi.csproj|solutionrelative:okulprojesi\\mappingprofiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Ogrenci.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Entities\\Ogrenci.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Entities\\Ogrenci.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Entities\\Ogrenci.cs",
+              "RelativeToolTip": "okulprojesi\\Entities\\Ogrenci.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T13:29:12.168Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OgrenciController.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Controllers\\OgrenciController.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Controllers\\OgrenciController.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Controllers\\OgrenciController.cs",
+              "RelativeToolTip": "okulprojesi\\Controllers\\OgrenciController.cs",
+              "ViewState": "AgIAANEAAAAAAAAAAAAgwDgBAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-04T08:20:00.681Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "NotEkleDto.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\NotEkleDto.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Models\\NotEkleDto.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\NotEkleDto.cs",
+              "RelativeToolTip": "okulprojesi\\Models\\NotEkleDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T11:43:36.763Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SinifController.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Controllers\\SinifController.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Controllers\\SinifController.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Controllers\\SinifController.cs",
+              "RelativeToolTip": "okulprojesi\\Controllers\\SinifController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE4AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T08:22:09.783Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Role.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\Role.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Models\\Role.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\Role.cs",
+              "RelativeToolTip": "okulprojesi\\Models\\Role.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-05T08:22:27.153Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginDto.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\LoginDto.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Models\\LoginDto.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\LoginDto.cs",
+              "RelativeToolTip": "okulprojesi\\Models\\LoginDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T08:14:32.114Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "okulprojesi\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T20:45:44.108Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Sinif.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Entities\\Sinif.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Entities\\Sinif.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Entities\\Sinif.cs",
+              "RelativeToolTip": "okulprojesi\\Entities\\Sinif.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T08:22:44.412Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OgretmenController.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Controllers\\OgretmenController.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Controllers\\OgretmenController.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Controllers\\OgretmenController.cs",
+              "RelativeToolTip": "okulprojesi\\Controllers\\OgretmenController.cs",
+              "ViewState": "AgIAAO8AAAAAAAAAAAAqwAcBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T11:16:06.586Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "NotlarController.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Controllers\\NotlarController.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Controllers\\NotlarController.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Controllers\\NotlarController.cs",
+              "RelativeToolTip": "okulprojesi\\Controllers\\NotlarController.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAowDwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T11:44:33.995Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "OkulDB.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Data\\OkulDB.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Data\\OkulDB.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Data\\OkulDB.cs",
+              "RelativeToolTip": "okulprojesi\\Data\\OkulDB.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T11:15:09.444Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "OkulDbContextFactory.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Data\\OkulDbContextFactory.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Data\\OkulDbContextFactory.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Data\\OkulDbContextFactory.cs",
+              "RelativeToolTip": "okulprojesi\\Data\\OkulDbContextFactory.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAiwBQAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T08:35:28.29Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BranslarController.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Controllers\\BranslarController.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Controllers\\BranslarController.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Controllers\\BranslarController.cs",
+              "RelativeToolTip": "okulprojesi\\Controllers\\BranslarController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T08:36:53.503Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Brans.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Entities\\Brans.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Entities\\Brans.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Entities\\Brans.cs",
+              "RelativeToolTip": "okulprojesi\\Entities\\Brans.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T08:41:53.186Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Ogretmen.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Entities\\Ogretmen.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Entities\\Ogretmen.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Entities\\Ogretmen.cs",
+              "RelativeToolTip": "okulprojesi\\Entities\\Ogretmen.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T11:26:17.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CreativeOgretmenViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\CreativeOgretmenViewModel.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Models\\CreativeOgretmenViewModel.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\CreativeOgretmenViewModel.cs",
+              "RelativeToolTip": "okulprojesi\\Models\\CreativeOgretmenViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T11:26:08.924Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "UserRegisterDto.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\UserRegisterDto.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Models\\UserRegisterDto.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\UserRegisterDto.cs",
+              "RelativeToolTip": "okulprojesi\\Models\\UserRegisterDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T11:59:14.906Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\User.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\User.cs",
+              "RelativeToolTip": "okulprojesi\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T20:45:07.308Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "CreativeOgrenciViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\CreativeOgrenciViewModel.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Models\\CreativeOgrenciViewModel.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\CreativeOgrenciViewModel.cs",
+              "RelativeToolTip": "okulprojesi\\Models\\CreativeOgrenciViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T11:19:01.752Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "CreativeSinifViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\CreativeSinifViewModel.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Models\\CreativeSinifViewModel.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Models\\CreativeSinifViewModel.cs",
+              "RelativeToolTip": "okulprojesi\\Models\\CreativeSinifViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-01T07:52:45.051Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "okulprojesi\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-01T07:52:58.719Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\appsettings.json",
+              "RelativeDocumentMoniker": "okulprojesi\\appsettings.json",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\appsettings.json",
+              "RelativeToolTip": "okulprojesi\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-07-27T20:55:12.467Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "MappingProfiles.cs",
+              "DocumentMoniker": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\MappingProfiles.cs",
+              "RelativeDocumentMoniker": "okulprojesi\\MappingProfiles.cs",
+              "ToolTip": "C:\\Users\\Zehra\\school-system\\backend\\okulprojesi\\MappingProfiles.cs",
+              "RelativeToolTip": "okulprojesi\\MappingProfiles.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-07T07:54:35.143Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

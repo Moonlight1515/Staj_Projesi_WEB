@@ -14,46 +14,41 @@ function Teacher() {
   const [searchTC, setSearchTC] = useState('');
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const [resTeachers, resBranslar] = await Promise.all([
-          axios.get(ApiData.API_URL + 'Ogretmen'),
-          axios.get(ApiData.API_URL + 'Branslar'),
-        ]);
-
-        setTeachers(resTeachers.data.data || []);
-        setBranslar(resBranslar.data.data || []);
-      } catch (error) {
-        console.error('Veri çekme hatası:', error);
-        setTeachers([]);
-        setBranslar([]);
-      }
-      setLoading(false);
-    };
-
-    fetchData();
-  }, [refreshFlag]);
-
-  const searchByTC = async () => {
-    if (!searchTC.trim()) {
-      setRefreshFlag(!refreshFlag);
-      return;
-    }
+  const fetchTeachers = async () => {
+    setLoading(true);
     try {
-      const res = await axios.get(`${ApiData.API_URL}Ogretmen/AraTc/${searchTC.trim()}`);
+      const [resTeachers, resBranslar] = await Promise.all([
+        axios.get(ApiData.API_URL + 'Ogretmen'),
+        axios.get(ApiData.API_URL + 'Branslar'),
+      ]);
+
+      setTeachers(resTeachers.data.data || []);
+      setBranslar(resBranslar.data.data || []);
+    } catch (error) {
+      console.error('Veri çekme hatası:', error);
+      setTeachers([]);
+      setBranslar([]);
+    }
+    setLoading(false);
+  };
+
+  const searchByTC = async (tc) => {
+    try {
+      const res = await axios.get(`${ApiData.API_URL}Ogretmen/AraTc/${tc.trim()}`);
       if (res.data.status) {
-        setTeachers([res.data.data]);
+        setTeachers(res.data.data);
       } else {
         setTeachers([]);
-        alert('TC ile eşleşen öğretmen bulunamadı');
       }
-    } catch {
+    } catch (error) {
       setTeachers([]);
-      alert('TC ile eşleşen öğretmen bulunamadı');
+      console.error('Arama sırasında hata oluştu', error);
     }
   };
+
+  useEffect(() => {
+    fetchTeachers();
+  }, [refreshFlag]);
 
   const handleClosePopup = () => {
     setPopupType(null);
@@ -83,19 +78,25 @@ function Teacher() {
         boxSizing: 'border-box',
       }}
     >
-     <h2 className="title-box">Öğretmenler</h2>
-
+      <h2 className="title-box">Öğretmenler</h2>
 
       <input
         type="text"
         placeholder="TC ile ara"
         value={searchTC}
-        onChange={(e) => setSearchTC(e.target.value)}
+        onChange={(e) => {
+          const value =  e.target.value.replace(/\D/g, ''); ;
+          setSearchTC(value);
+
+          if (value.trim().length >= 3) {
+            searchByTC(value);     
+          } else {
+            fetchTeachers();       
+          }
+        }}
         style={{ marginRight: 8, padding: '6px 8px', borderRadius: 4, border: '1px solid #ccc' }}
       />
-      <button onClick={searchByTC} style={buttonStyle}>
-        Ara
-      </button>
+
       <button
         onClick={() => {
           setSearchTC('');
@@ -106,7 +107,10 @@ function Teacher() {
         Temizle
       </button>
 
-      <button onClick={() => setPopupType('add')} style={{ ...buttonStyle, marginLeft: 16, backgroundColor: '#28a745' }}>
+      <button
+        onClick={() => setPopupType('add')}
+        style={{ ...buttonStyle, marginLeft: 16, backgroundColor: '#28a745' }}
+      >
         Öğretmen Ekle
       </button>
 

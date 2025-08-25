@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import ApiData from './config.json';  // API URL'nin olduğu dosya
+import ApiData from './config.json';
 import './auth.css';
 
 function Register() {
-  const [form, setForm] = useState({ userName: '', email: '', password: '', roleId: 2 }); // default öğrenci
+  const [form, setForm] = useState({
+    userName: '',
+    email: '',
+    password: '',
+    roleId: 3 // Default öğrenci
+  });
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -17,8 +22,9 @@ function Register() {
         UserName: form.userName,
         Email: form.email,
         PasswordHash: form.password,
-        RoleId: parseInt(form.roleId)  // RoleId'yi sayıya çevir
+        RoleId: parseInt(form.roleId)  // Backend sayısal RoleId bekliyor
       });
+
       alert('Kayıt başarılı, kullanıcı ID: ' + res.data.UserId);
     } catch (err) {
       alert('Kayıt başarısız: ' + (err.response?.data?.message || err.message));
@@ -52,11 +58,17 @@ function Register() {
           onChange={handleChange}
           required
         />
-        <select name="roleId" value={form.roleId} onChange={handleChange} required>
-          <option value={1}>Müdür</option>
-          <option value={2}>Öğrenci</option>
-          <option value={3}>Öğretmen</option>
-        </select>
+        <select
+  name="roleId"
+  value={form.roleId}
+  onChange={e => setForm({ ...form, roleId: parseInt(e.target.value) })}
+  required
+>
+  <option value={1}>Müdür</option>
+  <option value={2}>Öğretmen</option>
+  <option value={3}>Öğrenci</option>
+</select>
+
         <button type="submit">Kayıt Ol</button>
       </form>
     </div>

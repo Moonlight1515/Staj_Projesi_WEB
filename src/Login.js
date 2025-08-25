@@ -9,69 +9,54 @@ function Login({ onLoginSuccess }) {
   const handleChange = e =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const getRoleNameById = (roleId) => {
-    switch (roleId) {
-      case 1:
-        return 'Müdür';
-      case 2:
-        return 'Öğrenci';
-      case 3:
-        return 'Öğretmen';
-      default:
-        return 'Kullanıcı';
-    }
-  };
-
   const handleSubmit = async e => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const res = await axios.post(ApiData.API_URL + 'Auth/login', {
-        UserName: form.userName,
-        PasswordHash: form.password  // Normal şifre gönderiyoruz, backend hash'leyip karşılaştıracak
-      });
+  try {
+    const res = await axios.post(ApiData.API_URL + 'Auth/login', {
+      UserName: form.userName,
+      PasswordHash: form.password
+    });
 
-      const roleId = res.data.roleId || 0;
-      const roleName = res.data.role || getRoleNameById(roleId);
+    // Backend doğru rol adını gönderiyor: Mudur / Ogretmen / Ogrenci
+    const userData = {
+      userName: res.data.userName,
+      roleId: res.data.roleId,
+      roleName: res.data.role // artık backend’den gelen rol adı
+    };
 
-      const userData = {
-        userName: res.data.userName || res.data.UserName,
-        roleId: roleId,
-        roleName: roleName
-      };
+    alert(`Hoşgeldin ${userData.userName}! Rolün: ${userData.roleName}`);
+    onLoginSuccess(userData);
 
-      alert(`Hoşgeldin ${userData.userName}! Rolün: ${userData.roleName}`);
-      onLoginSuccess(userData);
+  } catch (err) {
+    alert('Giriş başarısız: ' + (err.response?.data?.message || err.message));
+  }
+};
 
-    } catch (err) {
-      alert('Giriş başarısız: ' + (err.response?.data?.message || err.message));
-    }
-  };
 
   return (
-  <div className="home-container">
-    <form onSubmit={handleSubmit} className="auth-form">
-      <h2>Login</h2>
-      <input
-        name="userName"
-        placeholder="Kullanıcı Adı"
-        value={form.userName}
-        onChange={handleChange}
-        required
-      />
-      <input
-        name="password"
-        type="password"
-        placeholder="Şifre"
-        value={form.password}
-        onChange={handleChange}
-        required
-      />
-      <button type="submit">Giriş Yap</button>
-    </form>
-  </div>
-);
-
+    <div className="home-container">
+      <form onSubmit={handleSubmit} className="auth-form">
+        <h2>Login</h2>
+        <input
+          name="userName"
+          placeholder="Kullanıcı Adı"
+          value={form.userName}
+          onChange={handleChange}
+          required
+        />
+        <input
+          name="password"
+          type="password"
+          placeholder="Şifre"
+          value={form.password}
+          onChange={handleChange}
+          required
+        />
+        <button type="submit">Giriş Yap</button>
+      </form>
+    </div>
+  );
 }
 
 export default Login;

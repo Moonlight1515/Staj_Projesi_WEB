@@ -116,8 +116,7 @@ function PopupStudent({ type, studentId, closePopup }) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h3>{typeTitles[type] || "Öğrenci İşlemi"}</h3>
-
+        
 
         {(type === 'add' || type === 'edit') && (
           <>
